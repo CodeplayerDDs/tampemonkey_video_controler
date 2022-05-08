@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      #my-video {
+        width: 600px;
+        height: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <video id="my-video" src="./source/test.mp4"></video>
+
+    <div style="width: 100px; height: 100px; background: #ccc"></div>
+  </body>
+
+  <script>
+    (function () {
+      let targetVideo = document.querySelector("video");
+
+      const interval = setInterval(() => {
+        if (targetVideo) {
+          clearInterval(interval);
+        }
+
+        targetVideo = document.querySelector("video");
+      }, 1000);
+
+      document.addEventListener("keydown", (e) => {
+        if (!targetVideo) {
+          return;
+        }
+
+        switch (e.key) {
+          case "ArrowLeft":
+            targetVideo.currentTime -= 10;
+            break;
+          case "ArrowRight":
+            targetVideo.currentTime += 10;
+            break;
+          case " ":
+            targetVideo.paused ? targetVideo.play() : targetVideo.pause();
+            break;
+        }
+      });
+    })();
+  </script>
+</html>
